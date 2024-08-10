@@ -1,5 +1,5 @@
-import { channelService } from "../../../app/services/channelService";
 import { useQuery } from "@tanstack/react-query";
+import { channelService } from '../../../../app/services/channelService';
 
 export function useChannelController() {
   const { data, isPending } = useQuery({

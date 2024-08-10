@@ -1,7 +1,7 @@
 import { useModals } from "../../../app/contexts/useModals";
 import { Button } from "../../components/Button";
 import { Modal } from "../../components/Modal";
-import { useNewChannelModalController } from "./useNewChannelModalController";
+import { useNewChannelModalController } from './controllers/useNewChannelModalController';
 
 export function NewChannelModal() {
   const { isNewChannelModalOpen, closeNewChannelModal } = useModals();
@@ -20,12 +20,7 @@ export function NewChannelModal() {
           handleSubmit(nameChannel);
         }}
       >
-        {/* <Input
-          placeholder="Nome no canal"
-          onChange={(e) => onChange(e.target.value)}
-
-          
-        /> */}
+       
         <input
           className="bg-white w-full rounded-lg border border-gray-500 px-3 h-[40px] text-gray-800   focus:border-gray-800 transition-all outline-none"
           type="text"

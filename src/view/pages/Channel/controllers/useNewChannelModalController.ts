@@ -1,9 +1,9 @@
-import { channelService } from "../../../app/services/channelService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import toast from "react-hot-toast";
-import { useModals } from "../../../app/contexts/useModals";
 import { useState } from "react";
+import { channelService } from '../../../../app/services/channelService';
+import { useModals } from '../../../../app/contexts/useModals';
 
 export function useNewChannelModalController() {
   const { closeNewChannelModal } = useModals();
@@ -17,17 +17,18 @@ export function useNewChannelModalController() {
   });
   const onChange = (newChannel: string) => {
     setNameChannel(newChannel.trim());
-    console.log("🚀 ~ onChange ~ newChannel:", newChannel)
   };
-   const handleSubmit = async (channel: string) => {
+   const handleSubmit = async (channelId: string) => {
     try {
-      await mutateAsync(channel);
+      console.log("🚀 ~ handleSubmit :", channelId);
+      await mutateAsync(channelId);
+
       queryClient.invalidateQueries({ queryKey: ["channels"] });
       toast.success("Canal criado com sucesso!");
       closeNewChannelModal();
     } catch (error) {
       console.log("🚀 ~ handleSubmit ~ error:", error)
-      toast.error("Erro ao criar o canal!");
+      toast.error("Erro ao deletar o canal!");
     }
   };
  

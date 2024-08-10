@@ -2,11 +2,19 @@ import { createContext, useCallback, useState } from "react";
 interface DashboardContextValue {
   //   areValuesVisible: boolean;
   isNewChannelModalOpen: boolean;
+  isDeleteChannelModalOpen: boolean;
+  isUpdateChannelModalOpen: boolean;
+
   //   isNewTransactionOpen: boolean;
   //   newTransactionType: "INCOME" | "EXPENSE" | null;
   //   toggleVisibility(): void;
   closeNewChannelModal(): void;
   openNewChannelModal(): void;
+  openDeleteChannelModal(): void;
+  closeDeleteChannelModal(): void;
+  openUpdateChannelModal(): void;
+  closeUpdateChannelModal(): void;
+
   //   openNewTransactionModal(type: "INCOME" | "EXPENSE"): void;
   //   closeNewTransactionModal(): void;
 }
@@ -16,6 +24,11 @@ export const ModalsContext = createContext({} as DashboardContextValue);
 export function ModalsProvider({ children }: { children: React.ReactNode }) {
     // const [areValuesVisible, setAreValuesVisible] = useState(false);
     const [isNewChannelModalOpen, setIsNewChannelModalOpen] = useState(false);
+    const [isDeleteChannelModalOpen, setIsDeleteChannelModalOpen] = useState(false);
+    const [isUpdateChannelModalOpen, setIsUpdateChannelModalOpen] =
+      useState(false);
+
+
     // const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
     // const [newTransactionType, setNewTransactionType] = useState<
     //     "INCOME" | "EXPENSE" | null
@@ -29,6 +42,22 @@ export function ModalsProvider({ children }: { children: React.ReactNode }) {
     const closeNewChannelModal = useCallback(() => {
         setIsNewChannelModalOpen(false);
     }, []);
+
+    const openDeleteChannelModal = useCallback(() => {
+      setIsDeleteChannelModalOpen(true);
+    }, []);
+
+    const closeDeleteChannelModal = useCallback(() => {
+      setIsDeleteChannelModalOpen(false);
+    }, []);
+
+       const openUpdateChannelModal = useCallback(() => {
+         setIsUpdateChannelModalOpen(true);
+       }, []);
+
+       const closeUpdateChannelModal = useCallback(() => {
+         setIsUpdateChannelModalOpen(false);
+       }, []);
 
     // const openNewTransactionModal = useCallback(
     //     (type: "INCOME" | "EXPENSE") => {
@@ -49,8 +78,14 @@ export function ModalsProvider({ children }: { children: React.ReactNode }) {
       <ModalsContext.Provider
         value={{
           isNewChannelModalOpen,
+          isDeleteChannelModalOpen,
+          isUpdateChannelModalOpen,
           openNewChannelModal,
           closeNewChannelModal,
+          openDeleteChannelModal,
+          closeDeleteChannelModal,
+          openUpdateChannelModal,
+          closeUpdateChannelModal,
         }}
       >
         {children}
