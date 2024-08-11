@@ -1,6 +1,5 @@
 import { createContext, useCallback, useState } from "react";
 interface DashboardContextValue {
-  //   areValuesVisible: boolean;
   isNewChannelModalOpen: boolean;
   isDeleteChannelModalOpen: boolean;
   isUpdateChannelModalOpen: boolean;

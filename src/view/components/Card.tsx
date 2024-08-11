@@ -18,4 +18,3 @@ export function Card({ children, width, className }: CardProps) {
     </div>
   );
 }
-//500
