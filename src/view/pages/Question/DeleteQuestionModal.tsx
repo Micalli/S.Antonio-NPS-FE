@@ -8,7 +8,6 @@ interface DeleteChannelModalProps {
 }
 
 export function DeleteQuestionModal({ questionId }: DeleteChannelModalProps) {
-  console.log("🚀 ~ aaaaaaaaaaaaaaaaa ~ questionId:", questionId)
   const { isDeleteQuestionModalOpen, closeDeleteQuestionModal } = useModals();
 
   const { isPending, handleSubmit } = useDeleteQuestionModalController();

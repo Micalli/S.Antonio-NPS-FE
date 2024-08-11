@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { channelService } from '../../../../app/services/channelService';
+import { channelService } from '../../../../app/services/ChannelService';
 import { useModals } from '../../../../app/contexts/useModals';
 
 export function useNewChannelModalController() {
@@ -20,7 +20,6 @@ export function useNewChannelModalController() {
   };
    const handleSubmit = async (channelId: string) => {
     try {
-      console.log("🚀 ~ handleSubmit :", channelId);
       await mutateAsync(channelId);
 
       queryClient.invalidateQueries({ queryKey: ["channels"] });

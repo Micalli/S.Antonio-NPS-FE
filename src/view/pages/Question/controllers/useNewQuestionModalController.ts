@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import { useCallback, useState } from "react";
+import {  useState } from "react";
 import { useModals } from "../../../../app/contexts/useModals";
 import { questionService } from "../../../../app/services/QuestionService";
 import { NewQuestionParams } from "../../../../app/services/QuestionService/create";
@@ -9,11 +9,6 @@ import { NewQuestionParams } from "../../../../app/services/QuestionService/crea
 export function useNewQuestionModalController() {
   const { closeNewQuestionModal } = useModals();
   const [newQuestion, setnewQuestion] = useState<any>();
-  const [newChannelId, setNewChannelId] = useState<any>();
-
-  const handleChannelId = useCallback((channelId: string) => {
-    setNewChannelId(channelId);
-  }, []);
 
   const onChange = (newQuestion: string) => {
     setnewQuestion(newQuestion.trim());
@@ -27,7 +22,6 @@ export function useNewQuestionModalController() {
   });
 
   const handleSubmit = async (data: NewQuestionParams) => {
-    console.log("🚀 ~ handleSubmit ~ data:", data)
     try {
       await mutateAsync(data);
 

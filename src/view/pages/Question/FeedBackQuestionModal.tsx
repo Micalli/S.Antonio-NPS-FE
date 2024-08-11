@@ -16,8 +16,6 @@ export function FeedBackQuestionModal({
   const { onChange, questionNote, mutateQueryRateQuestion, isPending } =
   useFeedbackQuestionModalController();
 
-  console.log("🚀 11~ questionId ~ questionId:", questionId);
-  console.log("🚀 11~ questionNote ~ questionNote:", questionNote);
 
 
   return (

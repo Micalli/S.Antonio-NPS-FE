@@ -25,7 +25,6 @@ export function useDeleteQuestionModalController() {
   });
 
    const handleSubmit = async (questionId: string) => {
-     console.log("🚀 ~ DELETE ~ questionId:", questionId)
      try {
        await mutateAsync(questionId);
        queryClient.invalidateQueries({ queryKey: ["questions"] });

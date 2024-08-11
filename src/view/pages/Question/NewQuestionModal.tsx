@@ -1,7 +1,7 @@
 import { useModals } from "../../../app/contexts/useModals";
 import { Button } from "../../components/Button";
 import { Modal } from "../../components/Modal";
-import { useNewQuestionModalController } from "./controllers/useNewQuestionModalController";
+import { useNewQuestionModalController } from './controllers/useNewQuestionModalController';
 interface newQuestionModalProps {
   channelId?: string;
 }

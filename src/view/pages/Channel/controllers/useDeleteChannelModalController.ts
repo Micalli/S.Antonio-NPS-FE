@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import toast from "react-hot-toast";
 import { useCallback, useState } from "react";
-import { channelService } from '../../../../app/services/channelService';
+import { channelService } from '../../../../app/services/ChannelService';
 import { useModals } from '../../../../app/contexts/useModals';
 
 export function useDeleteChannelModalController() {

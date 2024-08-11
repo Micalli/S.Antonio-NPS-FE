@@ -10,11 +10,11 @@ export function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Header />}>
-          <Route path="/channels" element={<Channel />} />
-          <Route path="/questions/:channelId" element={<Question />} />
-          <Route path="/answers/:questionId" element={<Answers />} />
-        </Route>
+          <Route element={<Header />}>
+            <Route path="/" element={<Channel />} />
+            <Route path="/questions/:channelId" element={<Question />} />
+            <Route path="/answers/:questionId" element={<Answers />} />
+          </Route>
       </Routes>
     </BrowserRouter>
   );

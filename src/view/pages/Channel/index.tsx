@@ -18,11 +18,15 @@ import { Card } from '../../components/Card';
 
 export function Channel() {
   const { channels, isPending: isLoadingChannels } = useChannelController();
-  const { openNewChannelModal, openDeleteChannelModal } = useModals();
+  const {
+    openNewChannelModal,
+    openDeleteChannelModal,
+    openUpdateChannelModal,
+  } = useModals();
   const { handleDeletedChannel, deletedChannel } =
     useDeleteChannelModalController();
 
-  const { handleUpdateChannel, openUpdateChannelModal, updatedChannelId } =
+  const { handleUpdateChannel, updatedChannelId } =
     useUpdateChannelModalController();
 
   function openDeleteModal(channelId: string) {

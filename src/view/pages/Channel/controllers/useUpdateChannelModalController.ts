@@ -12,8 +12,6 @@ export function useUpdateChannelModalController() {
 
   const {
     closeUpdateChannelModal,
-    isUpdateChannelModalOpen,
-    openUpdateChannelModal,
   } = useModals();
 
   const handleUpdateChannel = useCallback((updatedChannel: string) => {
@@ -50,8 +48,6 @@ export function useUpdateChannelModalController() {
     updatedChannelId,
     newChannelName,
     handleSubmit,
-    openUpdateChannelModal,
-    isUpdateChannelModalOpen,
     onChange,
   };
 }

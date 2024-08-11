@@ -18,6 +18,9 @@ import { useDeleteQuestionModalController } from "./controllers/useDeleteQuestio
 import { FeedBackQuestionModal } from "./FeedBackQuestionModal";
 import { useFeedbackQuestionModalController } from "./controllers/useFeedbackQuestionModalController";
 import { Card } from '../../components/Card';
+import { ButtonBack } from '../../components/ButtonBack';
+import { UpdateQuestionModal } from './UpdateQuestionModal';
+import { useUpdateQuestionModalController } from './controllers/useUpdateChannelModalController';
 
 const grades = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -27,12 +30,15 @@ export function Question() {
     openNewQuestionModal,
     openDeleteQuestionModal,
     openFeedbackQuestionModal,
+    openUpdateQuestionModal
   } = useModals();
 
   const { questions, isPending } = useQuestionController(channelId);
 
   const { deletedQuestionId, handleDeletedQuestion } =
     useDeleteQuestionModalController();
+
+    const { updatedQuestionId, handleUpdateQuestion } = useUpdateQuestionModalController();
 
   const {
     ratedQuestionId,
@@ -41,10 +47,16 @@ export function Question() {
     handleFeedbackQuestion,
   } = useFeedbackQuestionModalController();
 
-  function openUpdateModal(channelId: string) {
+  function openDeleteModal(channelId: string) {
     handleDeletedQuestion(channelId);
     openDeleteQuestionModal();
   }
+
+  function openUpdateModal(questionId: string) {
+    handleUpdateQuestion(questionId);
+    openUpdateQuestionModal();
+  }
+
   function handleRatedQuestionByGrade(
     grade: number,
     note: string | undefined,
@@ -75,7 +87,7 @@ export function Question() {
         </Button>
       </div>
       <Tooltip id="my-tooltip" className="z-10" />
-
+      <ButtonBack />
       {questions.length === 0 && !isPending && (
         <div>Não foi encontrado perguntas</div>
       )}
@@ -90,7 +102,7 @@ export function Question() {
             <div className=" flex justify-between mt-6 items-center">
               <div
                 className="hover:bg-red-200  rounded-full transition-all cursor-pointer"
-                onClick={() => openUpdateModal(quest.id)}
+                onClick={() => openDeleteModal(quest.id)}
               >
                 <TrashIcon className="w-11 h-11  p-3" />
               </div>
@@ -98,7 +110,7 @@ export function Question() {
 
               <div
                 className="hover:bg-slate-300   rounded-full  cursor-pointer "
-                // onClick={() => openUpdateModal(channel.id)}
+                onClick={() => openUpdateModal(quest.id)}
               >
                 <Pencil1Icon className="w-11 h-11  p-3" />
               </div>
@@ -120,7 +132,7 @@ export function Question() {
               ))}
             </div>
             <span className=" flex justify-center mt-2 text-gray-400 text-xs">
-              Avalie
+              {!quest.grade ? "Avalie." : "Já avaliado."}
             </span>
             <div className=" flex justify-between mt-2 text-gray-400 text-xs">
               <Link to={`/answers/${quest.id}`} className=" ">
@@ -136,6 +148,8 @@ export function Question() {
       </div>
       <DeleteQuestionModal questionId={deletedQuestionId} />
       <NewQuestionModal channelId={channelId} />
+      <UpdateQuestionModal questionId={updatedQuestionId} />
+
       <FeedBackQuestionModal
         questionId={ratedQuestionId}
         gradedQuestion={gradedQuestion}
