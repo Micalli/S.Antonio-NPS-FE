@@ -1,3 +1,11 @@
+# Teste Loja Santo Antonio APP
+
+<div align="center">
+  <img src="src/assets/background.png">
+</div>
+
+<br>
+
 ## Descrição
 Teste dado pela loja santo antonio com objetivo de fazer um NPS com canais, perguntas e respostas.
 Link para o API do teste [S.Antonio-NPS-FE](https://github.com/Micalli/S.Antonio-NPS-API)
