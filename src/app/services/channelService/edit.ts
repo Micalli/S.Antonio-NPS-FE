@@ -5,10 +5,9 @@ export type ChannelUpdateParams = {
   channelId: string;
 };
 
-export async function edit(params: ChannelUpdateParams) {
-  console.log("🚀 ~ edit ~ params:", params)
-  const { data } = await httpClient.put(`/canais/${params.channelId}`, {
-    channel: params.newChannelName,
+export async function edit({ channelId, newChannelName }: ChannelUpdateParams) {
+  const { data } = await httpClient.put(`/canais/${channelId}`, {
+    channel: newChannelName,
   });
 
   return data;

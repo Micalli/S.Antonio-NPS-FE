@@ -4,91 +4,110 @@ interface DashboardContextValue {
   isNewChannelModalOpen: boolean;
   isDeleteChannelModalOpen: boolean;
   isUpdateChannelModalOpen: boolean;
+  isNewQuestionModalOpen: boolean;
+  isDeleteQuestionModalOpen: boolean;
+  isFeedBackQuestionModalOpen: boolean;
 
-  //   isNewTransactionOpen: boolean;
-  //   newTransactionType: "INCOME" | "EXPENSE" | null;
-  //   toggleVisibility(): void;
   closeNewChannelModal(): void;
   openNewChannelModal(): void;
   openDeleteChannelModal(): void;
   closeDeleteChannelModal(): void;
   openUpdateChannelModal(): void;
   closeUpdateChannelModal(): void;
-
-  //   openNewTransactionModal(type: "INCOME" | "EXPENSE"): void;
-  //   closeNewTransactionModal(): void;
+  closeNewQuestionModal(): void;
+  openNewQuestionModal(): void;
+  openDeleteQuestionModal(): void;
+  closeDeleteQuestionModal(): void;
+  openFeedbackQuestionModal(): void;
+  closeFeedbackQuestionModal(): void;
 }
 
 export const ModalsContext = createContext({} as DashboardContextValue);
 
 export function ModalsProvider({ children }: { children: React.ReactNode }) {
-    // const [areValuesVisible, setAreValuesVisible] = useState(false);
-    const [isNewChannelModalOpen, setIsNewChannelModalOpen] = useState(false);
-    const [isDeleteChannelModalOpen, setIsDeleteChannelModalOpen] = useState(false);
-    const [isUpdateChannelModalOpen, setIsUpdateChannelModalOpen] =
-      useState(false);
+  const [isNewChannelModalOpen, setIsNewChannelModalOpen] = useState(false);
+  const [isDeleteChannelModalOpen, setIsDeleteChannelModalOpen] =
+    useState(false);
+  const [isUpdateChannelModalOpen, setIsUpdateChannelModalOpen] =
+    useState(false);
+  const [isDeleteQuestionModalOpen, setIsDeleteQuestionModalOpen] =
+    useState(false);
 
+  const [isNewQuestionModalOpen, setIsNewQuestionModalOpen] = useState(false);
+  const [isFeedBackQuestionModalOpen, setIsFeedBackQuestionModalOpen] =
+    useState(false);
 
-    // const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
-    // const [newTransactionType, setNewTransactionType] = useState<
-    //     "INCOME" | "EXPENSE" | null
-    // >(null);
+  const openNewChannelModal = useCallback(() => {
+    setIsNewChannelModalOpen(true);
+  }, []);
 
-    
-    const openNewChannelModal = useCallback(() => {
-        setIsNewChannelModalOpen(true);
-    }, []);
+  const closeNewChannelModal = useCallback(() => {
+    setIsNewChannelModalOpen(false);
+  }, []);
 
-    const closeNewChannelModal = useCallback(() => {
-        setIsNewChannelModalOpen(false);
-    }, []);
+  const openDeleteChannelModal = useCallback(() => {
+    setIsDeleteChannelModalOpen(true);
+  }, []);
 
-    const openDeleteChannelModal = useCallback(() => {
-      setIsDeleteChannelModalOpen(true);
-    }, []);
+  const closeDeleteChannelModal = useCallback(() => {
+    setIsDeleteChannelModalOpen(false);
+  }, []);
 
-    const closeDeleteChannelModal = useCallback(() => {
-      setIsDeleteChannelModalOpen(false);
-    }, []);
+  const openUpdateChannelModal = useCallback(() => {
+    setIsUpdateChannelModalOpen(true);
+  }, []);
 
-       const openUpdateChannelModal = useCallback(() => {
-         setIsUpdateChannelModalOpen(true);
-       }, []);
+  const closeUpdateChannelModal = useCallback(() => {
+    setIsUpdateChannelModalOpen(false);
+  }, []);
 
-       const closeUpdateChannelModal = useCallback(() => {
-         setIsUpdateChannelModalOpen(false);
-       }, []);
+  const openNewQuestionModal = useCallback(() => {
+    setIsNewQuestionModalOpen(true);
+  }, []);
 
-    // const openNewTransactionModal = useCallback(
-    //     (type: "INCOME" | "EXPENSE") => {
-    //     console.log("passou aq,", type);
+  const closeNewQuestionModal = useCallback(() => {
+    setIsNewQuestionModalOpen(false);
+  }, []);
+  const openDeleteQuestionModal = useCallback(() => {
+    setIsDeleteQuestionModalOpen(true);
+  }, []);
 
-    //         setNewTransactionType(type);
-    //         setIsNewTransactionModalOpen(true);
-    //     },
-    //     []
-    // );
+  const closeDeleteQuestionModal = useCallback(() => {
+    setIsDeleteQuestionModalOpen(false);
+  }, []);
 
-    // const closeNewTransactionModal = useCallback(() => {
-    //     setNewTransactionType(null);
-    //     setIsNewTransactionModalOpen(false);
-    // }, []);
+  const openFeedbackQuestionModal = useCallback(() => {
+    setIsFeedBackQuestionModalOpen(true);
+  }, []);
 
-    return (
-      <ModalsContext.Provider
-        value={{
-          isNewChannelModalOpen,
-          isDeleteChannelModalOpen,
-          isUpdateChannelModalOpen,
-          openNewChannelModal,
-          closeNewChannelModal,
-          openDeleteChannelModal,
-          closeDeleteChannelModal,
-          openUpdateChannelModal,
-          closeUpdateChannelModal,
-        }}
-      >
-        {children}
-      </ModalsContext.Provider>
-    );
+  const closeFeedbackQuestionModal = useCallback(() => {
+    setIsFeedBackQuestionModalOpen(false);
+  }, []);
+
+  return (
+    <ModalsContext.Provider
+      value={{
+        isNewChannelModalOpen,
+        isDeleteChannelModalOpen,
+        isUpdateChannelModalOpen,
+        isNewQuestionModalOpen,
+        isDeleteQuestionModalOpen,
+        isFeedBackQuestionModalOpen,
+        openNewChannelModal,
+        closeNewChannelModal,
+        openDeleteChannelModal,
+        closeDeleteChannelModal,
+        openUpdateChannelModal,
+        closeUpdateChannelModal,
+        openNewQuestionModal,
+        closeNewQuestionModal,
+        openDeleteQuestionModal,
+        closeDeleteQuestionModal,
+        openFeedbackQuestionModal,
+        closeFeedbackQuestionModal,
+      }}
+    >
+      {children}
+    </ModalsContext.Provider>
+  );
 }

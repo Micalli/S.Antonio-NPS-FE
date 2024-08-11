@@ -9,11 +9,12 @@ import { Tooltip } from "react-tooltip";
 import { useChannelController } from "./controllers/useChannelController";
 import { DeleteChannelModal } from "./DeleteChannelModal";
 import { useDeleteChannelModalController } from "./controllers/useDeleteChannelModalController";
-import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { Pencil1Icon, TrashIcon, EnterIcon } from "@radix-ui/react-icons";
 import { ChannelIcon } from "../../components/icons/Channelcon";
 import { UpdateChannelModal } from "./UpdateChannelModal";
 import { useUpdateChannelModalController } from "./controllers/useUpdateChannelModalController";
 import { Link } from "react-router-dom";
+import { Card } from '../../components/Card';
 
 export function Channel() {
   const { channels, isPending: isLoadingChannels } = useChannelController();
@@ -21,7 +22,7 @@ export function Channel() {
   const { handleDeletedChannel, deletedChannel } =
     useDeleteChannelModalController();
 
-  const { handleUpdateChannel, openUpdateChannelModal, deletedChannelId } =
+  const { handleUpdateChannel, openUpdateChannelModal, updatedChannelId } =
     useUpdateChannelModalController();
 
   function openDeleteModal(channelId: string) {
@@ -56,43 +57,46 @@ export function Channel() {
       {channels.length > 0 && !isLoadingChannels && (
         <div className=" grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 grid-rows-3  gap-6 justify-items-center">
           {channels.map((channel) => (
-            <Link
-              to={`/questions/${channel.id}`}
-              className="tracking-[-0.5px] text-teal-900 font-medium"
-            >
-              <ChannelCard key={channel.id}>
-                <div className=" flex justify-center mt-6">
-                  {<ChannelIcon />}
-                </div>
+            <Card width={60} key={channel.id}>
+              <div className=" flex justify-center mt-6 items-center">
+                <ChannelIcon />
+              </div>
 
-                <div className=" flex justify-center mt-6 font-bold text-4xl">
-                  {channel.channel}
-                </div>
-                <span className=" flex justify-center mt-6 text-gray-400 text-sm">
-                  {channel.Questions.length} perguntas
+              <div className=" flex justify-center mt-6 font-bold text-4xl">
+                {channel.channel}
+              </div>
+              <span className=" flex justify-center mt-6 text-gray-400 text-sm">
+                {channel.Questions.length} perguntas
+              </span>
+              <div className=" flex justify-center mt-6 font-bold gap-10  border-t-2 border-gray-200 pt-2">
+                <span
+                  className="hover:bg-red-200  rounded-full transition-all cursor-pointer"
+                  onClick={() => openDeleteModal(channel.id)}
+                >
+                  <TrashIcon className="w-11 h-11  p-3" />
                 </span>
-                <div className=" flex justify-center mt-6 font-bold gap-8">
-                  <span
-                    className="hover:bg-red-200  rounded-full transition-all"
-                    onClick={() => openDeleteModal(channel.id)}
-                  >
-                    <TrashIcon className="w-11 h-11  p-3" />
-                  </span>
 
-                  <span
-                    className="hover:bg-slate-300   rounded-full  "
-                    onClick={() => openUpdateModal(channel.id)}
-                  >
-                    <Pencil1Icon className="w-11 h-11  p-3" />
+                <span
+                  className="hover:bg-slate-300   rounded-full cursor-pointer  "
+                  onClick={() => openUpdateModal(channel.id)}
+                >
+                  <Pencil1Icon className="w-11 h-11  p-3" />
+                </span>
+                <Link
+                  to={`/questions/${channel.id}`}
+                  className="hover:bg-slate-300   rounded-full  "
+                >
+                  <span>
+                    <EnterIcon className="w-11 h-11  p-3" />
                   </span>
-                </div>
-              </ChannelCard>
-            </Link>
+                </Link>
+              </div>
+            </Card>
           ))}
         </div>
       )}
       <DeleteChannelModal channelId={deletedChannel} />
-      <UpdateChannelModal channelId={deletedChannelId} />
+      <UpdateChannelModal channelId={updatedChannelId} />
 
       <NewChannelModal />
     </>

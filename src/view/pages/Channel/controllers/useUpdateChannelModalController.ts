@@ -8,7 +8,7 @@ import { ChannelUpdateParams } from "../../../../app/services/channelService/edi
 
 export function useUpdateChannelModalController() {
   const [newChannelName, setNewChannelName] = useState<any>();
-  const [deletedChannelId, setDeletedChannelId] = useState<any>();
+  const [updatedChannelId, setUpdatedChannelId] = useState<any>();
 
   const {
     closeUpdateChannelModal,
@@ -17,7 +17,7 @@ export function useUpdateChannelModalController() {
   } = useModals();
 
   const handleUpdateChannel = useCallback((updatedChannel: string) => {
-    setDeletedChannelId(updatedChannel);
+    setUpdatedChannelId(updatedChannel);
   }, []);
 
   const onChange = (newChannel: string) => {
@@ -47,7 +47,7 @@ export function useUpdateChannelModalController() {
   return {
     isPending,
     handleUpdateChannel,
-    deletedChannelId,
+    updatedChannelId,
     newChannelName,
     handleSubmit,
     openUpdateChannelModal,
